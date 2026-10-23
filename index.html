@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Alexa Tap — DIY Alexa</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+    body { margin:0; background:#0b1020; color:#f8fafc; }
+    main { max-width:760px; margin:0 auto; padding:28px 18px 48px; }
+    .hero { padding:26px; border:1px solid #29344d; border-radius:22px; background:linear-gradient(135deg,#17233b,#111827); }
+    .tag { color:#93c5fd; font-size:.85rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    h1 { font-size:clamp(2rem,7vw,3.5rem); margin:.4rem 0; }
+    p { color:#cbd5e1; line-height:1.65; }
+    .button { display:inline-block; background:#93c5fd; color:#0b1020; font-weight:750; padding:12px 16px; border-radius:12px; text-decoration:none; margin:8px 8px 0 0; }
+    .secondary { background:#25324a; color:#f8fafc; }
+    .panel { margin-top:18px; padding:20px; border:1px solid #29344d; border-radius:18px; background:#111827; }
+    .track { font-size:1.2rem; color:#fff; font-weight:700; }
+    small { color:#94a3b8; }
+    footer { margin-top:26px; color:#94a3b8; font-size:.9rem; }
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="tag">DIY speaker companion</div>
+    <h1>Alexa Tap</h1>
+    <p>Tap the NFC tag to send the latest music notification captured by Alexa Tap to your DIY Alexa project. If the app isn't installed, this website stays available.</p>
+    <a class="button" href="/download">Download Alexa Tap APK</a>
+    <a class="button secondary" href="/api/last-track">View track API</a>
+  </section>
+  <section class="panel">
+    <h2>Latest track received</h2>
+    {% if track.title %}
+      <div class="track">{{ track.title }}</div>
+      <p>{{ track.artist }}</p>
+      {% if track.source %}<small>Source: {{ track.source }}</small><br>{% endif %}
+      {% if track.received_at %}<small>Received: {{ track.received_at }}</small>{% endif %}
+    {% else %}
+      <p>No track has been received yet. Install Alexa Tap, enable Notification Access, play music, then tap the NFC link.</p>
+    {% endif %}
+  </section>
+  <section class="panel">
+    <h2>How it works</h2>
+    <p><strong>App installed:</strong> Android can open Alexa Tap directly through a verified HTTPS App Link. The app sends the saved track details and finishes.</p>
+    <p><strong>App not installed:</strong> the same link opens this page, where the APK can be downloaded.</p>
+    <p><small>Track details come from Android media notifications. Some apps or devices may not expose track details.</small></p>
+  </section>
+  <footer>DIY Alexa / Alexa Tap starter project</footer>
+</main>
+</body>
+</html>
